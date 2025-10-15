@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Evelyne – Generative AI for Work & Research</title>
+  <meta name="description" content="One‑page portfolio for the Generative AI for Work & Research course: about, course overview, and weekly submissions." />
+  <style>
+    /* ===== Palette inspired by the provided "portfolio style" (dark, elegant, orange accent) ===== */
+    :root{
+      --bg-1: #0b0b0f;          /* near-black */
+      --bg-2: #151823;          /* charcoal */
+      --text: #f5f7fb;          /* soft white */
+      --muted: #b6bdcf;         /* muted grey */
+      --accent: #ff6a00;        /* orange accent */
+      --accent-2: #ffb86b;      /* warm highlight */
+      --card: #111318cc;        /* translucent card */
+      --glass: rgba(255,255,255,0.06);
+      --shadow: 0 10px 30px rgba(0,0,0,0.35);
+      --radius: 18px;
+      --maxw: 1100px;
+    }
+
+    /* ===== Base ===== */
+    html{scroll-behavior:smooth}
+    *{box-sizing:border-box}
+    body{
+      margin:0; color:var(--text); background: radial-gradient(1000px 600px at 10% -10%, #1f2333 0%, transparent 60%),
+                                         radial-gradient(1200px 700px at 120% 20%, #1a1f2d 0%, transparent 60%),
+                                         linear-gradient(160deg, var(--bg-1), var(--bg-2));
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif;
+      line-height:1.6;
+      background-attachment: fixed;
+    }
+    a{color:inherit}
+    .container{max-width:var(--maxw); margin:0 auto; padding:0 20px}
+
+    /* ===== Nav ===== */
+    header{
+      position:sticky; top:0; z-index:5; backdrop-filter:saturate(140%) blur(8px);
+      background: linear-gradient(180deg, rgba(15,15,22,0.9), rgba(15,15,22,0.55));
+      border-bottom:1px solid rgba(255,255,255,0.06);
+    }
+    .nav{display:flex; align-items:center; justify-content:space-between; height:68px}
+    .brand{
+      display:flex; align-items:center; gap:12px; font-weight:700; letter-spacing:.4px
+    }
+    .brand .spark{width:14px; height:14px; background:conic-gradient(from 0deg, var(--accent), var(--accent-2), var(--accent)); border-radius:4px; box-shadow:0 0 0 2px rgba(255,255,255,0.06)}
+    .nav a{padding:10px 14px; border-radius:12px; text-decoration:none; color:var(--muted)}
+    .nav a:hover{color:var(--text); background:var(--glass)}
+
+    /* ===== Hero ===== */
+    .hero{padding:90px 0 60px}
+    .hero-wrap{display:grid; grid-template-columns: 1.1fr .9fr; gap:40px; align-items:center}
+    @media (max-width:900px){.hero-wrap{grid-template-columns:1fr; text-align:center}}
+
+    .title{font-size:clamp(34px, 5vw, 56px); line-height:1.1; margin:0 0 12px; font-weight:800}
+    .grad{background: linear-gradient(92deg, var(--text) 0%, #ffffff 30%, var(--accent-2) 60%, var(--accent) 95%); -webkit-background-clip:text; background-clip:text; color:transparent}
+    .subtitle{color:var(--muted); font-size:clamp(16px, 2.2vw, 19px); margin-bottom:26px}
+
+    .cta{display:flex; gap:12px; flex-wrap:wrap; justify-content:flex-start}
+    @media (max-width:900px){.cta{justify-content:center}}
+    .btn{border:none; padding:12px 18px; border-radius:14px; font-weight:700; cursor:pointer; transition:.25s transform; box-shadow:var(--shadow)}
+    .btn.primary{background:linear-gradient(135deg, var(--accent) 0%, var(--accent-2) 100%); color:#1b1007}
+    .btn.ghost{background:transparent; color:var(--text); border:1px solid rgba(255,255,255,0.14)}
+    .btn:hover{transform:translateY(-2px)}
+
+    .avatar-card{
+      justify-self:center; position:relative; width:min(320px, 80vw); padding:16px; border-radius:24px; background:linear-gradient(145deg, #0e111a, #161a25);
+      box-shadow: var(--shadow), inset 0 0 0 1px rgba(255,255,255,0.06);
+    }
+    .avatar-card::after{ /* orange starburst vibe */
+      content:""; position:absolute; right:-14px; top:-14px; width:90px; height:90px; background: radial-gradient(circle at 30% 30%, var(--accent-2), var(--accent));
+      clip-path: polygon(50% 0%, 60% 35%, 100% 35%, 67% 57%, 82% 100%, 50% 72%, 18% 100%, 33% 57%, 0 35%, 40% 35%);
+      opacity:.6; filter: blur(.5px);
+    }
+    .avatar{width:100%; aspect-ratio:1/1; object-fit:cover; border-radius:50%; display:block; border:6px solid #10131b; box-shadow: 0 12px 30px rgba(0,0,0,.45)}
+    .avatar-note{margin-top:10px; color:var(--muted); font-size:14px; text-align:center}
+
+    /* ===== Sections ===== */
+    section{padding:80px 0}
+    .section-title{font-size: clamp(22px, 3vw, 32px); margin:0 0 14px; font-weight:800}
+    .section-kicker{color:var(--accent-2); letter-spacing:.14em; text-transform:uppercase; font-size:12px}
+    .lead{color:var(--muted)}
+
+    .card{background:var(--card); border:1px solid rgba(255,255,255,0.08); border-radius:var(--radius); padding:22px; box-shadow:var(--shadow)}
+    .grid{display:grid; gap:18px}
+    .grid.cols-2{grid-template-columns:1fr 1fr}
+    .grid.cols-3{grid-template-columns:repeat(3, 1fr)}
+    @media (max-width:900px){.grid.cols-2, .grid.cols-3{grid-template-columns:1fr}}
+
+    ul.clean{list-style:none; padding-left:0; margin:0}
+    ul.clean li{padding:10px 0; border-bottom:1px dashed rgba(255,255,255,.08)}
+    ul.clean li:last-child{border-bottom:none}
+
+    .pill{display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.08); margin:4px 8px 0 0; font-size:12px; color:var(--muted)}
+
+    /* ===== Weekly submissions ===== */
+    .week-card{display:flex; flex-direction:column; gap:8px}
+    .week-title{font-weight:800}
+    .mini{font-size:12px; color:var(--muted)}
+    .link{align-self:flex-start; padding:8px 12px; border-radius:12px; border:1px solid rgba(255,255,255,.14); text-decoration:none}
+    .link:hover{background:var(--glass)}
+
+    /* ===== Footer ===== */
+    footer{padding:36px 0 60px; color:var(--muted); text-align:center}
+
+    /* ===== Reveal on scroll ===== */
+    .reveal{opacity:0; transform:translateY(14px); transition:.7s ease}
+    .reveal.visible{opacity:1; transform:none}
+  </style>
+</head>
+<body>
+  <header>
+    <nav class="container nav">
+      <div class="brand"><span class="spark"></span> <span>Evelyne · GenAI Portfolio</span></div>
+      <div class="nav-links">
+        <a href="#about">About me</a>
+        <a href="#course">About the course</a>
+        <a href="#weeks">Weekly submissions</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <!-- ===== Hero ===== -->
+    <section class="hero">
+      <div class="container hero-wrap">
+        <div>
+          <h1 class="title"><span class="grad">Generative AI for Work & Research</span></h1>
+          <p class="subtitle">A sleek, one‑page portfolio documenting my 8‑week journey applying no‑code AI to real‑world epidemiology, data workflows, and scientific communication.</p>
+          <div class="cta">
+            <a class="btn primary" href="#weeks">Explore Weekly Work</a>
+            <a class="btn ghost" href="#about">About Me</a>
+            <a class="btn ghost" href="CV.docx" download>Download CV</a>
+          </div>
+        </div>
+        <div class="avatar-card reveal">
+          <!-- IMPORTANT: the image file should be available as "moi.jpg" next to this HTML. -->
+          <img class="avatar" src="moi.jpg?v=2" alt="Portrait of Evelyne" loading="eager" />
+          <div class="avatar-note">Hi! I'm Evelyne — epidemiologist & data manager using GenAI to accelerate rigorous, reproducible research.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== About Me ===== -->
+    <section id="about">
+      <div class="container grid cols-2">
+        <div class="reveal">
+          <div class="section-kicker">Profile</div>
+          <h2 class="section-title">About me</h2>
+          <p class="lead">Public health professional specialized in <strong>biostatistics</strong>, <strong>data-management</strong> and <strong>epidemiology</strong>. Since 2017, I’ve worked at the <em>Geneva Tumor Registry</em>, focusing on database stewardship, quality control, statistical design, and reporting. Previously, I contributed to regional cancer surveillance in France.</p>
+          <div style="margin-top:14px">
+            <span class="pill">Cancer registry data</span>
+            <span class="pill">Biostatistics</span>
+            <span class="pill">Epidemiology</span>
+            <span class="pill">Stata · R · Python</span>
+          </div>
+        </div>
+        <div class="card reveal">
+          <h3 style="margin-top:0">Selected publications</h3>
+          <ul class="clean">
+            <li><strong>The burden of rare cancers among adults in the Canton of Geneva, Switzerland, from 2011 to 2020 </strong> — Front Oncol, 2025.</li>
+            <li><strong>Sun exposure and challenges of sun protection in adolescents and young adults: A prevalence observational study</strong> — Med Int (Lond), 2024.</li>
+            <li><strong>Cohort profile: population-based cohorts of patients with colorectal cancer and of their relatives in Geneva, Switzerland</strong> — BMJ Open, 2022.</li>
+            <li><strong>High burden of invasive and non-invasive cancer among women aged 20-49 years: the situation in Geneva, Switzerland</strong> — BMC Women’s Health, 2022.</li>
+            <li><strong>NAFLD and MAFLD as emerging causes of HCC: A populational study</strong> — JHEP Reports, 2021.</li>
+          </ul>
+          <p class="mini">(Contact details intentionally omitted to avoid spam.)</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== About the Course ===== -->
+    <section id="course">
+      <div class="container">
+        <div class="reveal">
+          <div class="section-kicker">Course</div>
+          <h2 class="section-title">About the course</h2>
+          <p class="lead">An 8‑week live cohort on <strong>no‑code AI tools</strong>, automations, and research communication. Features weekly workshops, help sessions, community support, personalized feedback, a capstone project, and a shareable certificate.</p>
+        </div>
+        <div class="grid cols-3" style="margin-top:18px">
+          <div class="card reveal">
+            <h4 style="margin-top:0">Module 1 · Foundations</h4>
+            <p class="mini">How LLMs are trained · Generating Markdown/LaTeX/HTML · Building simple research websites.</p>
+          </div>
+          <div class="card reveal">
+            <h4 style="margin-top:0">Module 2 · AI‑Automated Data Analysis</h4>
+            <p class="mini">Code Interpreter & Julius · Automated dashboards · File conversion · Data viz & reports.</p>
+          </div>
+          <div class="card reveal">
+            <h4 style="margin-top:0">Module 3 · GenAI for Research/Text</h4>
+            <p class="mini">Literature reviews with Elicit/LiteRev · Text classification · Sentiment · Knowledge maps.</p>
+          </div>
+          <div class="card reveal">
+            <h4 style="margin-top:0">Module 4 · Custom GPTs & Chatbots</h4>
+            <p class="mini">LLM chat architecture · RAG · Knowledge bases · Interactive assistants.</p>
+          </div>
+          <div class="card reveal">
+            <h4 style="margin-top:0">Module 5 · AI for Automation</h4>
+            <p class="mini">Agent‑based flows · Email response automations · Browser control agents.</p>
+          </div>
+          <div class="card reveal">
+            <h4 style="margin-top:0">Module 6 · Communication & Outreach</h4>
+            <p class="mini">AI‑generated summaries · Scientific figures · Video abstracts · Visualization prompts.</p>
+          </div>
+          <div class="card reveal">
+            <h4 style="margin-top:0">Module 7 · Capstone & Showcase</h4>
+            <p class="mini">Project coaching · Peer feedback · Final presentation & public Q&A.</p>
+          </div>
+          <div class="card reveal">
+            <h4 style="margin-top:0">Grading</h4>
+            <p class="mini">Quizzes 15% · Assignments 35% · Participation 10% · Final project 40% (Passing ≥ 80%).</p>
+          </div>
+          <div class="card reveal">
+            <h4 style="margin-top:0">Bootcamp Features</h4>
+            <p class="mini">Live workshops & help sessions · Private community · Lifetime tutorials · Affordable non‑profit program.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Weekly Submissions ===== -->
+    <section id="weeks">
+      <div class="container">
+        <div class="reveal">
+          <div class="section-kicker">Work</div>
+          <h2 class="section-title">My weekly submissions</h2>
+          <p class="lead">Placeholders for now; links and artifacts will be plugged in as the course progresses.</p>
+        </div>
+
+        <div class="grid cols-2" style="margin-top:18px">
+          <!-- 8 weeks -->
+          <div class="card week-card reveal">
+            <div class="week-title">Week 1 · LLM Foundations</div>
+            <div class="mini">Prompting, structured outputs, and a micro‑site.</div>
+            <a class="link" href="#">Add link →</a>
+          </div>
+          <div class="card week-card reveal">
+            <div class="week-title">Week 2 · Data & Dashboards</div>
+            <div class="mini">First pass at automating a small analysis workflow.</div>
+            <a class="link" href="#">Add link →</a>
+          </div>
+          <div class="card week-card reveal">
+            <div class="week-title">Week 3 · Text Analytics</div>
+            <div class="mini">Literature triage and knowledge synthesis.</div>
+            <a class="link" href="#">Add link →</a>
+          </div>
+          <div class="card week-card reveal">
+            <div class="week-title">Week 4 · Custom Assistant</div>
+            <div class="mini">Prototype a light RAG chatbot on cancer registry docs.</div>
+            <a class="link" href="#">Add link →</a>
+          </div>
+          <div class="card week-card reveal">
+            <div class="week-title">Week 5 · Automation</div>
+            <div class="mini">Batch conversions and email drafting helpers.</div>
+            <a class="link" href="#">Add link →</a>
+          </div>
+          <div class="card week-card reveal">
+            <div class="week-title">Week 6 · Communication</div>
+            <div class="mini">Figure generation & visual narratives.</div>
+            <a class="link" href="#">Add link →</a>
+          </div>
+          <div class="card week-card reveal">
+            <div class="week-title">Week 7 · Capstone Sprint</div>
+            <div class="mini">Iterate, test, and document.</div>
+            <a class="link" href="#">Add link →</a>
+          </div>
+          <div class="card week-card reveal">
+            <div class="week-title">Week 8 · Final Showcase</div>
+            <div class="mini">Present, reflect, and ship.</div>
+            <a class="link" href="#">Add link →</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container mini">© <span id="yr"></span> Evelyne · Portfolio. Contact details intentionally omitted to avoid spam. 👋</div>
+  </footer>
+
+  <script>
+    // Current year
+    document.getElementById('yr').textContent = new Date().getFullYear();
+
+    // Reveal on scroll
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('visible'); io.unobserve(e.target);} });
+    },{threshold:0.2});
+    document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+  </script>
+</body>
+</html>
