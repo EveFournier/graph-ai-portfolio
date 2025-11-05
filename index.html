@@ -5,7 +5,7 @@
   <script src="https://files.bpcontent.cloud/2025/11/05/15/20251105154117-H2MDBYWQ.js" defer></script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Evelyne – Generative AI for Work & Research</title>
+  <title>Evelyne Fournier – Generative AI for Work & Research</title>
   <meta name="description" content="One-page portfolio for the Generative AI for Work & Research course: about, course overview, and weekly submissions." />
   <style>
     /* ===== Palette inspired by the provided "portfolio style" (dark, elegant, orange accent) ===== */
@@ -82,7 +82,14 @@
     /* ===== Sections ===== */
     section{padding:80px 0}
     .section-title{font-size: clamp(22px, 3vw, 32px); margin:0 0 14px; font-weight:800}
-    .section-kicker{color:var(--accent-2); letter-spacing:.14em; text-transform:uppercase; font-size:12px}
+    /* >>> Updated: bigger, bolder kickers for PROFILE / COURSE / WORK <<< */
+    .section-kicker{
+      color:var(--accent-2);
+      letter-spacing:.18em;
+      text-transform:uppercase;
+      font-size: clamp(14px, 1.4vw, 20px); /* larger + responsive */
+      font-weight: 900;                    /* bold */
+    }
     .lead{color:var(--muted)}
 
     .card{background:var(--card); border:1px solid rgba(255,255,255,0.08); border-radius:var(--radius); padding:22px; box-shadow:var(--shadow)}
@@ -240,7 +247,7 @@
             <a class="link" href="#">Add link →</a>
           </div>
 
-          <!-- UPDATED: Workshop 2 project -->
+          <!-- Workshop 2 project -->
           <div class="card week-card reveal">
             <div class="week-title">Workshop 2 · Automated Data Analysis</div>
             <div class="mini">Analyzed Gapminder data to explore relationships between two global indicators using AI tools.</div>
@@ -254,7 +261,7 @@
           </div>
           <div class="card week-card reveal">
             <div class="week-title">Week 4 · Custom Assistant</div>
-            <div class="mini">Prototype a light RAG chatbot on cancer registry docs.</div>
+            <div class="mini">Meet Jojo, prototype of a light RAG chatbot on cancer registry activities.</div>
             <a class="link" href="#">Add link →</a>
           </div>
           <div class="card week-card reveal">
