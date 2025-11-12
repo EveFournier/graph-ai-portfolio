@@ -202,8 +202,23 @@
           <div class="card week-card reveal"><div class="week-title">Week 1 · LLM Foundations</div><div class="mini">Prompting, structured outputs, and a micro-site.</div><a class="link" href="#">Add link →</a></div>
           <div class="card week-card reveal"><div class="week-title">Workshop 2 · Automated Data Analysis</div><div class="mini">Analyzed Gapminder data to explore relationships between two global indicators using AI tools.</div><a class="link" href="https://evefournier.github.io/graph-ai-portfolio/GapMinder_Analysis.html" target="_blank" rel="noopener">View report →</a></div>
           <div class="card week-card reveal"><div class="week-title">Week 3 · Text Analytics</div><div class="mini">Literature triage and knowledge synthesis.</div><a class="link" href="https://evefournier.github.io/graph-ai-portfolio/data_analyst_report.html" target="_blank" rel="noopener">View report →</a></div>
-          <div class="card week-card reveal"><div class="week-title">Week 4 · Custom Assistant</div><div class="mini">Meet Agent Jojo, prototype of a light RAG chatbot on cancer registry activities.</div><a class="link" href="#">Go to ChatBox →</a></div>
-          <div class="card week-card reveal"><div class="week-title">Week 5 · Automation</div><div class="mini">Batch conversions and email drafting helpers.</div><a class="link" href="#">See contact for consultation below →</a></div>
+
+          <!-- Workshop 4 → OPEN AGENT (chat)  // NEW -->
+          <div class="card week-card reveal">
+            <div class="week-title">Week 4 · Custom Assistant</div>
+            <div class="mini">Meet Agent Jojo, prototype of a light RAG chatbot on cancer registry activities.</div>
+            <a class="link" href="#"
+               onclick="openAgent(event)"
+               aria-label="Open chat agent">Go to ChatBox →</a>
+          </div>
+
+          <!-- Workshop 5 → LINK TO #consultation  // NEW -->
+          <div class="card week-card reveal">
+            <div class="week-title">Week 5 · Automation</div>
+            <div class="mini">Batch conversions and email drafting helpers. See contact for consultation below</div>
+            <a class="link" href="#consultation">See contact for consultation below →</a>
+          </div>
+
           <div class="card week-card reveal"><div class="week-title">Week 6 · Communication</div><div class="mini">Figure generation & visual narratives.</div><a class="link" href="#">Add link →</a></div>
           <div class="card week-card reveal"><div class="week-title">Week 7 · Capstone Sprint</div><div class="mini">Iterate, test, and document.</div><a class="link" href="#">Add link →</a></div>
           <div class="card week-card reveal"><div class="week-title">Week 8 · Final Showcase</div><div class="mini">Present, reflect, and ship.</div><a class="link" href="#">Add link →</a></div>
@@ -242,6 +257,25 @@
       entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('visible'); io.unobserve(e.target);} });
     },{threshold:0.2});
     document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+    // Open Botpress agent (v3 first, fallback to legacy API)  // NEW
+    function openAgent(ev){
+      if(ev && ev.preventDefault) ev.preventDefault();
+      try {
+        if (window.botpress && typeof window.botpress.open === 'function') {
+          window.botpress.open();            // v3 API
+          return;
+        }
+      } catch(e){}
+      try {
+        if (window.botpressWebChat && typeof window.botpressWebChat.sendEvent === 'function') {
+          window.botpressWebChat.sendEvent({ type: 'show' });  // legacy fallback
+          return;
+        }
+      } catch(e){}
+      // Graceful fallback: let the user click the widget
+      alert('The chat agent is loading. If it does not appear, please use the chat bubble (bottom-right).');
+    }
   </script>
 </body>
 </html>
