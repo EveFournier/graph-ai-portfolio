@@ -28,8 +28,8 @@
     *{box-sizing:border-box}
     body{
       margin:0; color:var(--text); background: radial-gradient(1000px 600px at 10% -10%, #1f2333 0%, transparent 60%),
-                                         radial-gradient(1200px 700px at 120% 20%, #1a1f2d 0%, transparent 60%),
-                                         linear-gradient(160deg, var(--bg-1), var(--bg-2));
+                                     radial-gradient(1200px 700px at 120% 20%, #1a1f2d 0%, transparent 60%),
+                                     linear-gradient(160deg, var(--bg-1), var(--bg-2));
       font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif;
       line-height:1.6;
       background-attachment: fixed;
@@ -104,17 +104,22 @@
     .iframe-wrap iframe{width:100%; height: min(90vh, 980px); border:0; background:#0b0b0f; border-radius:12px; box-shadow:var(--shadow)}
     @media (max-width:700px){ .iframe-wrap iframe{height: 1100px} }
     .form-hint{margin-bottom:10px; color:var(--muted)}
+
+    /* ===== NEW: Match "Course"/"Work" kicker color on module & weekly titles ===== */
+    section#course .card h4 { color: var(--accent-2); }
+    .week-title { color: var(--accent-2); }
   </style>
-  <link rel="preload" as="image" href="https://raw.githubusercontent.com/EveFournier/graph-ai-portfolio/main/moi2.jpg"></head>
+  <link rel="preload" as="image" href="https://raw.githubusercontent.com/EveFournier/graph-ai-portfolio/main/moi2.jpg">
+</head>
 <body>
   <header>
-    <nav class="container nav">
-      <div class="brand"><span class="spark"></span> <span>Evelyne · GenAI Portfolio</span></div>
+    <nav class="container nav" aria-label="Main">
+      <div class="brand"><span class="spark" aria-hidden="true"></span> <span>Evelyne · GenAI Portfolio</span></div>
       <div class="nav-links">
         <a href="#about">About me</a>
         <a href="#course">About the course</a>
         <a href="#weeks">Weekly submissions</a>
-        <a href="#consultation">Contact for Consultation for Geneva Tumor Registry </a>
+        <a href="#consultation">Contact for Consultation</a>
       </div>
     </nav>
   </header>
@@ -199,34 +204,60 @@
         </div>
 
         <div class="grid cols-2" style="margin-top:18px">
-          <div class="card week-card reveal"><div class="week-title">Week 1 · LLM Foundations</div><div class="mini">Prompting, structured outputs, and a micro-site.</div><a class="link" href="#">Add link →</a></div>
-          <div class="card week-card reveal"><div class="week-title">Workshop 2 · Automated Data Analysis</div><div class="mini">Analyzed Gapminder data to explore relationships between two global indicators using AI tools.</div><a class="link" href="https://evefournier.github.io/graph-ai-portfolio/GapMinder_Analysis.html" target="_blank" rel="noopener">View report →</a></div>
-          <div class="card week-card reveal"><div class="week-title">Week 3 · Text Analytics</div><div class="mini">Literature triage and knowledge synthesis.</div><a class="link" href="https://evefournier.github.io/graph-ai-portfolio/data_analyst_report.html" target="_blank" rel="noopener">View report →</a></div>
+          <div class="card week-card reveal">
+            <div class="week-title">Week 1 · LLM Foundations</div>
+            <div class="mini">Prompting, structured outputs, and a micro-site.</div>
+            <a class="link" href="#">Add link →</a>
+          </div>
 
-          <!-- Workshop 4 → OPEN AGENT (chat)  // NEW -->
+          <div class="card week-card reveal">
+            <div class="week-title">Week 2 · Automated Data Analysis</div>
+            <div class="mini">Analyzed Gapminder data to explore relationships between two global indicators using AI tools.</div>
+            <a class="link" href="https://evefournier.github.io/graph-ai-portfolio/GapMinder_Analysis.html" target="_blank" rel="noopener">View report →</a>
+          </div>
+
+          <div class="card week-card reveal">
+            <div class="week-title">Week 3 · Text Analytics</div>
+            <div class="mini">Literature triage and knowledge synthesis.</div>
+            <a class="link" href="https://evefournier.github.io/graph-ai-portfolio/data_analyst_report.html" target="_blank" rel="noopener">View report →</a>
+          </div>
+
+          <!-- Workshop 4 → OPEN AGENT (chat) -->
           <div class="card week-card reveal">
             <div class="week-title">Week 4 · Custom Assistant</div>
             <div class="mini">Meet Agent Jojo, prototype of a light RAG chatbot on cancer registry activities.</div>
-            <a class="link" href="#"
-               onclick="openAgent(event)"
-               aria-label="Open chat agent">Go to ChatBox →</a>
+            <a class="link" href="#" onclick="openAgent(event)" aria-label="Open chat agent">Go to ChatBox →</a>
           </div>
 
-          <!-- Workshop 5 → LINK TO #consultation  // NEW -->
+          <!-- Workshop 5 → LINK TO #consultation -->
           <div class="card week-card reveal">
             <div class="week-title">Week 5 · Automation</div>
-            <div class="mini">Batch conversions and email drafting helpers. See contact for consultation below</div>
+            <div class="mini">Batch conversions and email drafting helpers. See contact for consultation below.</div>
             <a class="link" href="#consultation">See contact for consultation below →</a>
           </div>
 
-          <div class="card week-card reveal"><div class="week-title">Week 6 · Communication</div><div class="mini">Figure generation & visual narratives.</div><a class="link" href="#">Add link →</a></div>
-          <div class="card week-card reveal"><div class="week-title">Week 7 · Capstone Sprint</div><div class="mini">Iterate, test, and document.</div><a class="link" href="#">Add link →</a></div>
-          <div class="card week-card reveal"><div class="week-title">Week 8 · Final Showcase</div><div class="mini">Present, reflect, and ship.</div><a class="link" href="#">Add link →</a></div>
+          <div class="card week-card reveal">
+            <div class="week-title">Week 6 · Communication</div>
+            <div class="mini">Figure generation & visual narratives.</div>
+            <a class="link" href="#">Add link →</a>
+          </div>
+
+          <div class="card week-card reveal">
+            <div class="week-title">Week 7 · Capstone Sprint</div>
+            <div class="mini">Iterate, test, and document.</div>
+            <a class="link" href="#">Add link →</a>
+          </div>
+
+          <div class="card week-card reveal">
+            <div class="week-title">Week 8 · Final Showcase</div>
+            <div class="mini">Present, reflect, and ship.</div>
+            <a class="link" href="#">Add link →</a>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- ===== Contact for Consultation (NEW) ===== -->
+    <!-- ===== Contact for Consultation ===== -->
     <section id="consultation">
       <div class="container">
         <div class="reveal">
@@ -237,7 +268,7 @@
         <div class="card reveal">
           <div class="form-hint mini">Form hosted on Google (embedded securely).</div>
           <div class="iframe-wrap">
-            <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSf5ZfoKZkiAezFQ-qNRKRe8TPMt0fBTu-pGCM4IKEgMrDAeKg/viewform?embedded=true" width="640" height="780" frameborder="0" marginheight="0" marginwidth="0">Chargement…</iframe>
+            <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSf5ZfoKZkiAezFQ-qNRKRe8TPMt0fBTu-pGCM4IKEgMrDAeKg/viewform?embedded=true" width="640" height="780" frameborder="0" marginheight="0" marginwidth="0" title="Consultation Form">Chargement…</iframe>
           </div>
         </div>
       </div>
@@ -245,7 +276,7 @@
   </main>
 
   <footer>
-    <div class="container mini">© <span id="yr"></span> Evelyne Fournier· Exemple of Portfolio. Contact details intentionally omitted to avoid spam. 👋</div>
+    <div class="container mini">© <span id="yr"></span> Evelyne Fournier · Example Portfolio. Contact details intentionally omitted to avoid spam. 👋</div>
   </footer>
 
   <script>
@@ -258,22 +289,21 @@
     },{threshold:0.2});
     document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 
-    // Open Botpress agent (v3 first, fallback to legacy API)  // NEW
+    // Open Botpress agent (v3 first, fallback to legacy API)
     function openAgent(ev){
       if(ev && ev.preventDefault) ev.preventDefault();
       try {
         if (window.botpress && typeof window.botpress.open === 'function') {
-          window.botpress.open();            // v3 API
+          window.botpress.open(); // v3 API
           return;
         }
       } catch(e){}
       try {
         if (window.botpressWebChat && typeof window.botpressWebChat.sendEvent === 'function') {
-          window.botpressWebChat.sendEvent({ type: 'show' });  // legacy fallback
+          window.botpressWebChat.sendEvent({ type: 'show' }); // legacy fallback
           return;
         }
       } catch(e){}
-      // Graceful fallback: let the user click the widget
       alert('The chat agent is loading. If it does not appear, please use the chat bubble (bottom-right).');
     }
   </script>
