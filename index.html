@@ -10,14 +10,15 @@
   <style>
     /* ===== Palette ===== */
     :root{
-      --bg-1: #0b0b0f;
-      --bg-2: #151823;
-      --text: #f5f7fb;
-      --muted: #b6bdcf;
-      --accent: #ff6a00;
-      --accent-2: #ffb86b;
-      --card: #111318cc;
-      --glass: rgba(255,255,255,0.06);
+      /* Updated palette based on provided colour scheme */
+      --bg-1: #5b4860;
+      --bg-2: #7e6e85;
+      --text: #f8e3e9;
+      --muted: #a69baf;
+      --accent: #c42467;
+      --accent-2: #c75d90;
+      --card: #6c3455cc;
+      --glass: rgba(255,255,255,0.08);
       --shadow: 0 10px 30px rgba(0,0,0,0.35);
       --radius: 18px;
       --maxw: 1100px;
@@ -27,9 +28,13 @@
     html{scroll-behavior:smooth}
     *{box-sizing:border-box}
     body{
-      margin:0; color:var(--text); background: radial-gradient(1000px 600px at 10% -10%, #1f2333 0%, transparent 60%),
-                                     radial-gradient(1200px 700px at 120% 20%, #1a1f2d 0%, transparent 60%),
-                                     linear-gradient(160deg, var(--bg-1), var(--bg-2));
+      margin:0;
+      color:var(--text);
+      /* Replace dark radial gradients with softer purple accents */
+      background:
+        radial-gradient(1000px 600px at 10% -10%, var(--accent) 0%, transparent 60%),
+        radial-gradient(1200px 700px at 120% 20%, var(--accent-2) 0%, transparent 60%),
+        linear-gradient(160deg, var(--bg-1), var(--bg-2));
       font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif;
       line-height:1.6;
       background-attachment: fixed;
@@ -40,8 +45,9 @@
     /* ===== Nav ===== */
     header{
       position:sticky; top:0; z-index:5; backdrop-filter:saturate(140%) blur(8px);
-      background: linear-gradient(180deg, rgba(15,15,22,0.9), rgba(15,15,22,0.55));
-      border-bottom:1px solid rgba(255,255,255,0.06);
+      /* Soften the header with semi-transparent mortar shades */
+      background: linear-gradient(180deg, rgba(91,72,96,0.9), rgba(91,72,96,0.55));
+      border-bottom:1px solid rgba(255,255,255,0.12);
     }
     .nav{display:flex; align-items:center; justify-content:space-between; height:68px}
     .brand{display:flex; align-items:center; gap:12px; font-weight:700; letter-spacing:.4px}
@@ -66,7 +72,8 @@
     .btn:hover{transform:translateY(-2px)}
 
     .avatar-card{justify-self:center; position:relative; width:min(320px, 80vw); padding:16px; border-radius:24px; background:linear-gradient(145deg, #0e111a, #161a25); box-shadow: var(--shadow), inset 0 0 0 1px rgba(255,255,255,0.06)}
-    .avatar-card::after{content:""; position:absolute; right:-14px; top:-14px; width:90px; height:90px; background: radial-gradient(circle at 30% 30%, var(--accent-2), var(--accent)); clip-path: polygon(50% 0%, 60% 35%, 100% 35%, 67% 57%, 82% 100%, 50% 72%, 18% 100%, 33% 57%, 0 35%, 40% 35%); opacity:.6; filter: blur(.5px)}
+    /* Hide the decorative star overlay on the avatar card */
+    .avatar-card::after{display:none}
     .avatar{width:100%; aspect-ratio:1/1; object-fit:cover; border-radius:50%; display:block; border:6px solid #10131b; box-shadow: 0 12px 30px rgba(0,0,0,.45)}
     .avatar-note{margin-top:10px; color:var(--muted); font-size:14px; text-align:center}
 
@@ -119,6 +126,11 @@
         <a href="#about">About me</a>
         <a href="#course">About the course</a>
         <a href="#weeks">Weekly submissions</a>
+        <!-- Added link to final project external dashboard -->
+        <a href="https://evecancergeneva.shinyapps.io/cancer-dashboard-unige/" target="_blank" rel="noopener">
+          <span style="font-weight:700; color:var(--accent-2)">Final project</span> :
+          <span style="color:#ffffff">Geneva Cancer Dashboard</span>
+        </a>
         <a href="#consultation">Contact for Consultation</a>
       </div>
     </nav>
